@@ -1,5 +1,4 @@
-# sicpNote
-#### sicpNote
+#### SICPNote
 
 使用Typora编写
 
