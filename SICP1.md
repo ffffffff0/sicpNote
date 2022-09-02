@@ -116,6 +116,8 @@ Internal definitions 可以进一步有优化块结构，`x` 是可以子结构�
 #### Linear Recursion and Iteration
 
 考虑计算阶乘 `n!`:
+
+
 $$
 n! = n \times (n-1) \times (n-2) \dots 3 \times 2 \times 1
 $$
