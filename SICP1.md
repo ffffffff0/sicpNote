@@ -1,4 +1,4 @@
-##### Compound Procedures
+#### Compound Procedures
 
 计算平方数
 
@@ -265,4 +265,43 @@ $$
 $$
 
 从公式可以看出，最后的时间复杂度也就是 $log(a)$。
+
+#### Testing for Primality
+
+![image-20220904140222718](img/image-20220904140222718.png)
+
+也就是在 $1<a<n$ 的前提下，如果 `n` 为素数，则有 $a^{n} \% n = a \% n = a$ 。
+
+```scheme
+; The Fermat test
+(define (exptmod base exp m)
+    (cond ((= exp 0) 1)
+          ((isEven exp)
+           (remainder
+            (squre (exptmod base (/ exp 2) m))
+            m))
+          (else
+           (remainder
+            (* base (exptmod base (- exp 1) m))
+            m))
+    )
+)
+
+(define (fermat-test n)
+    (define (try-it a)
+        (= (exptmod a n n) a))
+    (try-it (+ 1 (random (- n 1))))
+)
+
+(define (fast-prim n times)
+    (cond ((= times 0) true)
+          ((fermat-test n) (fast-prim n (- times 1)))
+          (else false)
+    )
+)
+```
+
+
+
+
 
