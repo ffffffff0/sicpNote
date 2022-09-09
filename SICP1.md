@@ -301,7 +301,13 @@ $$
 )
 ```
 
+#### Exercise 1.26
 
+![image-20220909224619248](img/image-20220909224619248.png)
+
+当 `exp` 为偶数时，上述程序会计算两次 `(expmod base (/ exp 2) m)`, 而 `(squre (expmod base (/ exp 2) m))` 只计算一次。
+
+所以复杂度会上升如上写运行。
 
 
 
