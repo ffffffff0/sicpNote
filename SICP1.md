@@ -270,12 +270,13 @@ $$
 
 ![image-20220904140222718](img/image-20220904140222718.png)
 
-也就是在  $1 < a < n$  的前提下，如果 `n` 为素数，则有  $a^{n} \mod n = a \mod n = a$  。
+也就是在  $0 < a < n$  的前提下，如果 `n` 为素数，则有  $a^{n} \bmod n = a \bmod n = a$  。
 
 ```scheme
 ; The Fermat test
 (define (exptmod base exp m)
     (cond ((= exp 0) 1)
+          
           ((isEven exp)
            (remainder
             (squre (exptmod base (/ exp 2) m))
@@ -308,6 +309,43 @@ $$
 当 `exp` 为偶数时，上述程序会计算两次 `(expmod base (/ exp 2) m)`, 而 `(squre (expmod base (/ exp 2) m))` 只计算一次。
 
 所以复杂度会上升如上写运行。
+
+#### Miller–Rabin primality test
+
+首先根据 `fermant's little theorem` 可以得到:
+
+
+$$
+a^{n} \bmod n = a \bmod n = a \\
+a^{n} \equiv a (\bmod n)
+$$
+如果`a` 不是 `n`的倍数，这个定理也可以写成更加常用的一种形式：
+
+
+$$
+a^{n-1} \equiv 1 (\bmod n)
+$$
+假设 `p` 是奇素数，则 $x^{2} \equiv 1 (\bmod p)$ 的解为:
+
+
+$$
+x^{2} - 1 \equiv 0 (\bmod p) 
+$$
+也就是:
+
+
+$$
+(x+1)(x-1) \bmod p = 0
+$$
+可以看出，要么 $(x+1)(x-1)=0$ 或者 $(x+1)(x-1)$ 为 `p` 的倍数，又结合费马小定理可以知道 $0<x<p$ ，故解为: $x=1, x=p-1$ 。
+
+结合上述的到的：$a^{n-1} \equiv 1 (\bmod n)$, 则 $n-1$ 为偶数，如果 $n-1$ 为奇数， `n` 为偶数，则可以直接判断其能否被2整除，所以 $n-1$ 为偶数， 故:
+
+
+$$
+(a^{\frac{n-1}{2}})^{2} - 1 \equiv 0 (\bmod n)
+$$
+也就是, 判断 $a^{\frac{n-1}{2}}$ 的解是否为 `1 or n-1`，不为则不是素数，如果解正确，则要模仿之前的操作，再进行一轮检验，变成判断 $a^{\frac{n-1}{4}}$ ，直到最后变成奇数。
 
 
 
