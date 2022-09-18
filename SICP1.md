@@ -352,5 +352,61 @@ $$
 
 也就是, 判断 $a^{\frac{n-1}{2}}$ 的解是否为 `1 or n-1`，不为则不是素数，如果解正确，则要模仿之前的操作，再进行一轮检验，变成判断 $a^{\frac{n-1}{4}}$ ，直到最后变成奇数。
 
+#### Calculate the definite integral
+
+定积分计算为:
+
+
+$$
+\int_{a}^{b} f = [f(a+\frac{dx}{2}) + f(a + dx + \frac{dx}{2}) + f(a + 2dx+\frac{dx}{2}) + \dots] dx
+$$
+
+
+可以定义一些高级抽象，共享 一些基础模式。
+
+```scheme
+(define (sum term a next b)
+  (if (> a b)
+      0
+      (+ (term a)
+         (sum term (next a) next b)))
+)
+```
+
+如求解立方的定积分：
+
+```scheme
+(define (integral f a b dx)
+  (define (add-dx x)
+    (+ x dx)
+  )
+  (* (sum f (+ a (/ dx 2.0)) add-dx b)
+     dx)
+)
+
+(define (cube x)
+  (* x x x)
+)
+
+(integral cube 0 1 0.01)
+(integral cube 0 1 0.001)
+```
+
+#### Simpson’s Rule Calculate the definite Integration
+
+辛普森规则来计算定积分更加精确，辛普森规则如下:
+$$
+\begin{eqnarray}
+    \int_{a}^{b} f &=& \frac{h}{3} (y_{0}+ 4y_{1} + 2y_{2} + 4y_{3} + 2y_{4} + \dots + 2y_{n-2} + 4y_{n-1} + y_{n}) \\
+
+    h &=& \frac{b-a}{n} \\
+
+    y_{k} &=& f(a+kh)
+\end{eqnarray}
+$$
+
+
+`n` 为偶数，增大`n`值能够提高定积分近似值。
+
 
 
