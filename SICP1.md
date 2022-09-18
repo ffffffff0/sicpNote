@@ -395,6 +395,8 @@ $$
 #### Simpson’s Rule Calculate the definite Integration
 
 辛普森规则来计算定积分更加精确，辛普森规则如下:
+
+
 $$
 \begin{eqnarray}
     \int_{a}^{b} f &=& \frac{h}{3} (y_{0}+ 4y_{1} + 2y_{2} + 4y_{3} + 2y_{4} + \dots + 2y_{n-2} + 4y_{n-1} + y_{n}) \\
@@ -404,7 +406,6 @@ $$
     y_{k} &=& f(a+kh)
 \end{eqnarray}
 $$
-
 
 `n` 为偶数，增大`n`值能够提高定积分近似值。
 
