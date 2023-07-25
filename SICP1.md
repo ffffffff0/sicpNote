@@ -406,5 +406,48 @@ $$
 
 `n` 为偶数，增大`n`值能够提高定积分近似值。
 
+#### compute approximations to PI
 
+![image-20230725220512141](C:\Users\wenxu\Desktop\sicpNote\img\image-20230725220512141.png)
+
+递归和迭代两种方法：
+
+```scheme
+; iterative
+(define (product term a next b)
+  (define (iter a result)
+    result
+    (iter (next a) (* result (term a))))
+  (iter a 1))
+; recursive
+(define (product term a next b)
+  (if (> a b)
+      1
+      (* (term a) (product term (next a) next b))))
+
+; compute pi
+; gen numberator
+(define (number-item i)
+  (cond
+    [(= i 1) 2]
+    [(even? i) (+ i 2)]
+    [else (+ i 1)]))
+
+; gen denominator
+(define (deno-item i)
+  (if (odd? i)
+      (+ i 2)
+      (+ i 1)))
+
+(define (pi n)
+  (* 4 (exact->inexact
+        (/ (product number-item
+                    1
+                    (lambda (i) (+ i 1))
+                    n)
+           (product deno-item
+                    1
+                    (lambda (i) (+ i 1))
+                    n)))))
+```
 
