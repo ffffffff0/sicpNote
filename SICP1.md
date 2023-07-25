@@ -408,7 +408,7 @@ $$
 
 #### compute approximations to PI
 
-![image-20230725220512141](C:\Users\wenxu\Desktop\sicpNote\img\image-20230725220512141.png)
+<img src="C:\Users\wenxu\Desktop\img\image-20230725220512141-1690294623069-2.png" alt="image-20230725220512141" style="zoom:67%;" />
 
 递归和迭代两种方法：
 
