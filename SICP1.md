@@ -2,7 +2,7 @@
 
 计算平方数
 
-![image-20220817200130779](img/image-20220817200130779-16621284382921.png)
+<img src="img/image-20220817200130779-16621284382921.png" alt="image-20220817200130779" style="zoom:80%;" />
 
 两种展开计算方式
 
@@ -46,19 +46,19 @@
 
 #### Conditional Expressions and Predicates
 
-![image-20220817211538734](img/image-20220817211538734-16621284382922.png)
+<img src="img/image-20220817211538734-16621284382922.png" alt="image-20220817211538734" style="zoom:80%;" />
 
-![image-20220817211952224](img/image-20220817211952224-16621284382933.png)
+<img src="img/image-20220817211952224-16621284382933.png" alt="image-20220817211952224" style="zoom:80%;" />
 
 `if` 和 `cond` 不同的是， `if` 是一种特殊的形式，当它的 `predicate` 部分为真时， `then-clause` 分支会被求值，否则的话， `else-clause` 分支被求值，两个 `clause` 只有一个会被求值。
 
 #### ***Lisp  operators are compound expressions***
 
-![image-20220818224412051](img/image-20220818224412051-16621284382934.png)
+<img src="img/image-20220818224412051-16621284382934.png" alt="image-20220818224412051" style="zoom:80%;" />
 
 #### whether the interpreter useing applicative-order or normal-order
 
-![image-20220820100335718](img/image-20220820100335718-16621284382936.png)
+<img src="img/image-20220820100335718-16621284382936.png" alt="image-20220820100335718" style="zoom:80%;" />
 
 - 假设使用applicative order 
 
@@ -81,7 +81,7 @@
 
 #### Newtod's Method
 
-![image-20220820103453822](img/image-20220820103453822-16621284382935.png)
+<img src="img/image-20220820103453822-16621284382935.png" alt="image-20220820103453822" style="zoom:80%;" />
 
 ```scheme
 ; newton method
@@ -117,10 +117,13 @@ $$
 
 
 $$
-x = x_0 - \frac{f(x_0)}{f^{'}(x_0)} \\
+x = x_0 - \frac{f(x_0)}{f^{'}(x_0)}
+$$
 
+$$
 f^{'}(x) = \frac{f(x + dx) - f(x)}{dx}
 $$
+
 
 
 然后取这个 $x$ 作为上一个的 $x_0$ 继续这个步骤， 会持续逼近函数 $f(x) = x^2 -n$ ，$f(x)=0$ 的时候 $x$ 的值， 也就是平方根。
@@ -170,11 +173,11 @@ $$
 
 块结构可以避免大型项目中，函数依赖混乱的问题
 
-![image-20220820135756899](img/image-20220820135756899-16621284382937.png)
+<img src="img/image-20220820135756899-16621284382937.png" alt="image-20220820135756899" style="zoom:80%;" />
 
 Internal definitions 可以进一步有优化块结构，`x` 是可以子结构公用的
 
-![image-20220820135919216](img/image-20220820135919216-16621284382938.png)
+<img src="img/image-20220820135919216-16621284382938.png" alt="image-20220820135919216" style="zoom:80%;" />
 
 #### Linear Recursion and Iteration
 
@@ -196,7 +199,7 @@ $$
   )
   ```
 
-  ![image-20220821095235632](img/image-20220821095235632-16621284382939.png)
+  <img src="img/image-20220821095235632-16621284382939.png" alt="image-20220821095235632" style="zoom:80%;" />
 
 
 
@@ -213,11 +216,11 @@ $$
    )
   ```
 
-  ![image-20220821095310563](img/image-20220821095310563-166212843829310.png)
+  <img src="img/image-20220821095310563-166212843829310.png" alt="image-20220821095310563" style="zoom:80%;" />
 
   #### Coin Change
 
-  ![image-20220830204153697](img/image-20220830204153697-166212843829311.png)
+  <img src="img/image-20220830204153697-166212843829311.png" alt="image-20220830204153697" style="zoom:80%;" />
 
   如何理解上述的解法  $f(a, n) = f(a, n-1) + f(a-d, n)$ ，可以从`DFS`解决问题角度来理解。
 
@@ -243,7 +246,7 @@ $$
 
 #### recursive ane iterative process
 
-![image-20220831201944476](img/image-20220831201944476-166212843829312.png)
+<img src="img/image-20220831201944476-166212843829312.png" alt="image-20220831201944476" style="zoom:80%;" />
 
 递归方法易得。
 
@@ -331,7 +334,7 @@ $$
 
 #### Testing for Primality
 
-![image-20220904140222718](img/image-20220904140222718.png)
+<img src="img/image-20220904140222718.png" alt="image-20220904140222718" style="zoom: 80%;" />
 
 也就是在  $0 < a < n$  的前提下，如果 `n` 为素数，则有  $a^{n} \bmod n = a \bmod n = a$  。
 
@@ -367,7 +370,7 @@ $$
 
 #### Exercise 1.26
 
-![image-20220909224619248](img/image-20220909224619248.png)
+<img src="img/image-20220909224619248.png" alt="image-20220909224619248" style="zoom:80%;" />
 
 当 `exp` 为偶数时，上述程序会计算两次 `(expmod base (/ exp 2) m)`, 而 `(squre (expmod base (/ exp 2) m))` 只计算一次。
 
