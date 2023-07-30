@@ -103,6 +103,61 @@
   (< (abs (- (square guess) x)) 0.001))
 ```
 
+
+
+对于函数 $f(x) = x^2 - n$  求平方根也就是求 $x$ , 也就是函数 $f(x)=0$ 的时候 $x$ 的值， 首先有一个猜测值 $(x_0, f(x_0))$ , 可以得到过此点的切线方程如下:
+$$
+f(x) - f(x_0) = f^{'}(x_0)(x-x_0)
+$$
+也就是求这个切线方程在纵坐标为 $f(x)=0$ 的时候横坐标 $x$, 也就是：
+$$
+x = x_0 - \frac{f(x_0)}{f^{'}(x_0)} \\
+
+f^{'}(x) = \frac{f(x + dx) - f(x)}{dx}
+$$
+然后取这个 $x$ 作为上一个的 $x_0$ 继续这个步骤， 会持续逼近函数 $f(x) = x^2 -n$ ，$f(x)=0$ 的时候 $x$ 的值， 也就是平方根。
+
+```scheme
+(define dx 0.00001)
+(define tolerance 0.00001)
+; 不动点迭代
+(define (fixed-point f first-guess)
+  (define (close-enough? v1 v2)
+    (< (abs (- v1 v2)) tolerance))
+  (define (try guess)
+    (let ((next (f guess)))
+      (if (close-enough? guess next)
+          next
+          (try next))))
+  (try first-guess))
+; 求微分
+(define (deriv g)
+  (lambda (x)
+    (/ (- (g (+ x dx))
+          (g x))
+       dx)))
+
+(define (newton-transform g)
+  (lambda (x)
+    (- x (/ (g x)
+            ((deriv g) x)))))
+; 牛顿法
+(define (newton-method g guess)
+  (fixed-point (newton-transform g)
+               guess))
+; 求平方根
+(define (sqrt x)
+  (newton-method (lambda (y)
+                   (- (* y y)
+                      x))
+                 1.0))
+
+; sqrt x
+(sqrt 2)
+```
+
+
+
 #### Internal definitions and block structure
 
 块结构可以避免大型项目中，函数依赖混乱的问题
