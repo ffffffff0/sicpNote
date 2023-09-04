@@ -517,3 +517,58 @@ $$
                     n)))))
 ```
 
+
+
+#### 函数的 n 次重复应用
+
+<img src="./../img/image-20230731211504400.png" alt="image-20230731211504400" style="zoom:80%;" />
+
+计算函数 $f(f(f(f(x))))$ 
+
+```lisp
+(define (repeated func n)
+  (if (= n 1)
+      func
+      (lambda (x) (func ((repeated func
+                                   (- n 1)) x)))))
+
+; test
+((repeated (lambda (x) (* x x)) 2) 5)
+```
+
+#### 链表操作
+
+合并两个链表
+
+```lisp
+(define (append list1 list2)
+    (if (null? list1)
+        list2
+        (cons (car list1) (append (cdr list1) list2))))
+```
+
+反转链表
+
+```lisp
+(define (reverse aList)
+    (define (reverse-iter aList ret)
+        (if (null? aList)
+            ret
+            (reverse-iter (cdr aList) (cons (car aList) ret))))
+    (reverse-iter aList '()))
+```
+
+<img src="./img/image-20230904221045786.png" alt="image-20230904221045786" style="zoom:67%;" />
+
+```lisp
+(define (same-parity first . aList)
+    (define (iter aList ret type)
+        (if (null? aList)
+            ret
+            (iter (cdr aList) (if (= (remainder (car aList) 2) type)
+                                  (append (car aList) ret)
+                                  ret)
+                  type)))
+    (iter aList (list first) (remainder first 2)))
+```
+
